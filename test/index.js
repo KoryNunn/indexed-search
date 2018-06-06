@@ -96,3 +96,29 @@ test('custom comparitor, complex data, random index', function(t){
 
     t.equal(resultIndex, randomIndex, 'found random item');
 });
+
+var duplicates = [1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,4,4,4,5,5,5];
+
+test('first duplicate', function(t){
+    t.plan(1);
+
+    var resultIndex = indexedSearch(duplicates, 2);
+
+    t.equal(resultIndex, 12, 'found first duplicate item');
+});
+
+test('lowest duplicate', function(t){
+    t.plan(1);
+
+    var resultIndex = indexedSearch(duplicates, 2, -1);
+
+    t.equal(resultIndex, 3, 'found lowest duplicate item');
+});
+
+test('higest duplicate', function(t){
+    t.plan(1);
+
+    var resultIndex = indexedSearch(duplicates, 2, 1);
+
+    t.equal(resultIndex, 14, 'found highest duplicate item');
+});

@@ -1,4 +1,8 @@
-function search(sortedItems, searchIndex, comparitor){
+function search(sortedItems, searchIndex, comparitor, findLowestOrHighest){
+    if(typeof comparitor !== 'function'){
+        findLowestOrHighest = comparitor;
+        comparitor = null;
+    }
     if(!comparitor){
         comparitor = (a, b) => a - b;
     }
@@ -17,11 +21,12 @@ function search(sortedItems, searchIndex, comparitor){
             break;
         }
 
-        if(comparitor(sortedItems[index], searchIndex) >= 0){
+        var comparison = comparitor(sortedItems[index], searchIndex);
+        if((findLowestOrHighest && findLowestOrHighest > 0) ? comparison > 0 : comparison >= 0){
             upper = index;
         }
 
-        if(comparitor(sortedItems[index], searchIndex) <= 0){
+        if((findLowestOrHighest && findLowestOrHighest < 0) ? comparison < 0 : comparison <= 0){
             lower = index;
         }
     };

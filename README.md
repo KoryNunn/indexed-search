@@ -6,7 +6,7 @@ This can find an item in an 10M length array in less than 1 millisecond on a mod
 
 ## Usage
 
-indexedSearch(sortedArray, valueToFind[, comparitorFunction (optional)]);
+indexedSearch(sortedArray, valueToFind[, comparitorFunction (optional), findLowestOrHighest (optional)]);
 
 ```javascript
 
@@ -38,5 +38,20 @@ for(var i = 0; i < 1000000; i++){
 var randomIndex = Math.ceil(Math.random() * dataSet.length) - 1;
 
 indexedSearch(dataSet, 0, (a, b) => a < b ? -1 : 1); // -> randomIndex
+
+```
+
+Force finding higest or lowest index of a value:
+`-1` for lowest, `1` for highest
+
+```javascript
+
+var dataSet = [1, 2, 2, 2, 2, 2, 3];
+
+indexedSearch(dataSet, 2); // -> index of the first item found (unspecified between 1 and 5)
+
+indexedSearch(dataSet, 2, -1); // -> 1
+
+indexedSearch(dataSet, 2, 1); // -> 5
 
 ```

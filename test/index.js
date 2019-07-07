@@ -115,10 +115,18 @@ test('lowest duplicate', function(t){
     t.equal(resultIndex, 3, 'found lowest duplicate item');
 });
 
-test('higest duplicate', function(t){
+test('highest duplicate', function(t){
     t.plan(1);
 
     var resultIndex = indexedSearch(duplicates, 2, 1);
 
     t.equal(resultIndex, 14, 'found highest duplicate item');
+});
+
+test('throw on bad search index', function(t){
+    t.plan(1);
+
+    t.throws(function(){
+        indexedSearch(duplicates, NaN);
+    });
 });

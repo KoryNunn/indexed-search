@@ -1,4 +1,8 @@
 function search(sortedItems, searchIndex, comparitor, findLowestOrHighest){
+    if(!comparitor && isNaN(searchIndex)){
+        throw new Error('Invalid searchIndex: NaN')
+    }
+
     if(typeof comparitor !== 'function'){
         findLowestOrHighest = comparitor;
         comparitor = null;
